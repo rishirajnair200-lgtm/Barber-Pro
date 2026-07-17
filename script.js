@@ -200,3 +200,127 @@ if(topBtn){
     });
 
         }
+// =========================
+// PART 3 - ADVANCED LUXURY EFFECTS
+// =========================
+
+
+// Cursor Glow Effect
+
+const cursor = document.createElement("div");
+
+cursor.classList.add("cursor-glow");
+
+document.body.appendChild(cursor);
+
+
+document.addEventListener("mousemove", (e)=>{
+
+    cursor.style.left = e.clientX + "px";
+    cursor.style.top = e.clientY + "px";
+
+});
+
+
+// Add Active Link Highlight
+
+const sections = document.querySelectorAll("section");
+const navLinks = document.querySelectorAll("nav a");
+
+
+window.addEventListener("scroll",()=>{
+
+    let current = "";
+
+    sections.forEach(section=>{
+
+        const sectionTop = section.offsetTop - 150;
+
+        if(scrollY >= sectionTop){
+
+            current = section.getAttribute("id");
+
+        }
+
+    });
+
+
+    navLinks.forEach(link=>{
+
+        link.classList.remove("active");
+
+        if(link.getAttribute("href") === "#" + current){
+
+            link.classList.add("active");
+
+        }
+
+    });
+
+});
+
+
+// Typing Effect For Hero Text
+
+const heroText = document.querySelector(".hero h1");
+
+
+if(heroText){
+
+    const text = heroText.textContent;
+
+    heroText.textContent = "";
+
+    let index = 0;
+
+
+    function type(){
+
+        if(index < text.length){
+
+            heroText.textContent += text.charAt(index);
+
+            index++;
+
+            setTimeout(type,80);
+
+        }
+
+    }
+
+
+    type();
+
+}
+
+
+// Floating Cards Effect
+
+const cards = document.querySelectorAll(".service-card");
+
+
+cards.forEach(card=>{
+
+    card.addEventListener("mousemove",(e)=>{
+
+        const rect = card.getBoundingClientRect();
+
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+
+
+        card.style.transform =
+        `rotateX(${-(y-rect.height/2)/15}deg)
+         rotateY(${(x-rect.width/2)/15}deg)
+         translateY(-10px)`;
+
+    });
+
+
+    card.addEventListener("mouseleave",()=>{
+
+        card.style.transform="";
+
+    });
+
+});
