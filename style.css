@@ -709,3 +709,10 @@ footer span {
     filter:blur(10px);
     z-index:9999;
 }
+.contact-buttons{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    flex-wrap:wrap;
+    margin-top:30px;
+   }
